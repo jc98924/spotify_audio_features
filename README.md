@@ -20,7 +20,7 @@ The **audio features** are as listed:
 * **tempo**
 * **valence**
 
-For further details about each feature, the descriptions are listed in the **model_analysis.ipynb** file. 
+For further details about each feature, the descriptions are listed in the [**model_analysis.ipynb**](https://github.com/jc98924/spotify_audio_features/blob/master/model_analysis.ipynb) file. 
 
 #### Business Use
 
@@ -50,7 +50,7 @@ Based on the pairplot shown above, we can see that none of the audio features ar
 
 For classification problems, the metric used to score the model is very important. Given that my product is geared towards upcoming producers, I felt that recall was way more important than precision since it's completely expected for a new producer to grind and produce a lot of tracks that go unrecognized. Being able to capture all of the successes is more valuable than making the correct predictions. However, precision should not be completely ignored as time is a finite resource. After some consideration, I settled on using F**β**  (with **β**  = 2) which essentially gives recall twice the importance of precision. 
 
-After cross-validating my data across a range of models, the Random Forest Classifier gave me the best validation F**β** score. After tuning the hyperparameters via RandomizedGridSearchCV on the train/validate set, the test-set F**β** score came out to be **59.49%**.
+After performing a 10-fold cross-validation on the dataset across a range of models, the Random Forest Classifier gave me the best validation F**β** score. After tuning the hyperparameters via RandomizedSearchCV, the F**β** score came out to be **59.49%**.
 
 As shown in the confusion matrix below, the model predicted a fair amount of songs to be hits that were actually not hits. On the other hand, it did manage to capture a good percentage of the successes. 
 
@@ -71,13 +71,13 @@ As shown in the confusion matrix below, the model predicted a fair amount of son
 | loudness         |   0.037    |
 | tempo            |   0.027    |
 
-What really surprised me about the results was that rap & hip/hop had such a strong effect on my model. Apparently, I had missed the memo when rap/hip-hop overtook pop as the most popular genre in 2017. I was also surprised that pop did not show up as an important feature but I believe that is due to how the elements of pop are being incorporated in the other genres. The graph below shows the artists with the most hits in my dataset. As you can see, rap/hip-hop/r&b artists have dominated with the only except being Ariana Grande. 
+What really surprised me about the results was that rap & hip/hop had such a strong effect on my model. Apparently, I had missed the memo when rap/hip-hop overtook pop as the most popular genre in 2017. I was also surprised that pop did not show up as an important feature but I believe that is due to how the elements of pop are being incorporated in the other genres. The graph below shows the artists with the most hits in my dataset. As you can see, rap/hip-hop/r&b artists have dominated with the only exception being Ariana Grande. 
 
 ![success_songs](https://github.com/jc98924/spotify_audio_features/blob/master/img/success_songs.png)
 
 
 
-The feature importances for the audio features were mostly in line with what I expected. However, I was also surprised by the inclusion of instrumentalness.
+The feature importances for the audio features were mostly in line with what I expected. However, I was also surprised by the inclusion of instrumentalness, which is a measure of the presence of vocals in the track.
 
 ![audio_features](https://github.com/jc98924/spotify_audio_features/blob/master/img/audio_features.png)
 
